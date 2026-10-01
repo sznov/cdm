@@ -1,0 +1,15 @@
+.sequence-workbench {
+  display: grid;
+  grid-template-columns: minmax(360px, 0.85fr) minmax(420px, 1.15fr);
+  gap: 10px;
+  margin-top: 10px;
+  min-height: 390px;
+  min-width: 0;
+}
+
+body.is-panning-diagram,
+body.is-panning-diagram .diagram-svg-stage {
+  cursor: grabbing;
+  user-select: none;
+}
+

@@ -1,0 +1,19 @@
+.chat-confirm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 10px;
+  border: 1px solid #fedf89;
+  border-radius: 8px;
+  background: #fffaeb;
+  color: #7a4d12;
+  padding: 9px;
+}
+
+body.theme-dark .chat-confirm {
+  border-color: #8a5c1b;
+  background: #2a2115;
+  color: #fbbf24;
+}
+

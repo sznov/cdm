@@ -1,0 +1,2 @@
+# Runtime dependency policy. Compile this under the pinned Python/Alpine image.
+-r requirements.txt

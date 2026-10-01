@@ -1,0 +1,124 @@
+.build-log-modal .modal-card {
+  height: min(82dvh, 840px);
+  grid-template-rows: auto minmax(0, 1fr);
+  overflow: hidden;
+}
+
+.build-log-modal-body {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  min-height: 0;
+  overflow: auto;
+  padding: 4px 6px 4px 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+.build-log-modal-body::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.build-log-modal-body::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+.build-log-modal-body::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: var(--scrollbar-thumb);
+  background-clip: padding-box;
+}
+
+.build-log-modal-body::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+  background-clip: padding-box;
+}
+
+.build-log-modal-body .transcript-checkpoint-card {
+  width: 100%;
+}
+
+.build-log-modal-body .chat-message:not(.is-collapsed) .chat-message-header {
+  position: sticky;
+  top: calc(0px - var(--build-log-body-pad-top, 10px));
+  z-index: 6;
+  margin: -10px -12px 6px;
+  padding: 8px 12px 7px;
+  border-bottom: 1px solid var(--line);
+  border-radius: 7px 7px 0 0;
+  background: var(--surface-soft);
+  background-clip: border-box;
+  box-shadow: none;
+}
+
+.build-log-modal-body .chat-message-title {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.build-log-time {
+  box-sizing: content-box;
+  display: grid;
+  grid-template-columns: 7ch 3ch 8ch;
+  flex: 0 0 18ch;
+  width: 18ch;
+  margin-left: auto;
+  color: var(--muted);
+  font: 0.64rem/1.2 var(--mono);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.build-log-duration,
+.build-log-clock {
+  min-width: 0;
+  text-align: right;
+}
+
+.build-log-time-separator {
+  text-align: center;
+}
+
+.build-log-time:not(.has-duration) .build-log-duration,
+.build-log-time:not(.has-duration) .build-log-time-separator {
+  visibility: hidden;
+}
+
+.build-log-checkpoint-time {
+  display: block;
+  flex: 0 0 auto;
+  width: auto;
+  margin-left: auto;
+}
+
+.build-log-checkpoint-time .build-log-duration,
+.build-log-checkpoint-time .build-log-time-separator {
+  display: none;
+}
+
+.build-log-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 0;
+  margin-bottom: 10px;
+}
+
+.build-log-header strong {
+  display: block;
+  color: var(--ink);
+  font-size: 0.88rem;
+  line-height: 1.2;
+}
+
+.build-log-header span {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 0.74rem;
+  line-height: 1.25;
+}
+

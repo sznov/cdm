@@ -1,0 +1,182 @@
+:root {
+  color-scheme: light;
+  --bg: #edf0f4;
+  --surface: #ffffff;
+  --surface-soft: #f7f9fb;
+  --surface-strong: #111827;
+  --line: #d4dae3;
+  --line-strong: #b8c2d0;
+  --ink: #182230;
+  --muted: #667085;
+  --faint: #98a2b3;
+  --blue: #1f5f99;
+  --blue-deep: #123a5f;
+  --active-blue: #28658a;
+  --teal: #15736f;
+  --amber: #a76015;
+  --red: #b42318;
+  --green: #287a3e;
+  --violet: #5b4da7;
+  --code: #f3f6fa;
+  --focus: rgba(31, 95, 153, 0.18);
+  --control-bg: #f8fafc;
+  --control-bg-hover: #eef2f6;
+  --control-bg-active: #e6edf5;
+  --control-border: #cbd5e1;
+  --control-color: #344054;
+  --control-muted: #98a2b3;
+  --scrollbar-track: transparent;
+  --scrollbar-thumb: rgba(102, 112, 133, 0.34);
+  --scrollbar-thumb-hover: rgba(102, 112, 133, 0.58);
+  --shadow: 0 1px 2px rgba(16, 24, 40, 0.06), 0 8px 24px rgba(16, 24, 40, 0.08);
+  --mono: "Cascadia Mono", "JetBrains Mono", Consolas, monospace;
+  --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --diagram-workspace-height: 44dvh;
+  --diagram-pan-slack: clamp(80px, 10vw, 150px);
+}
+
+body.theme-dark {
+  color-scheme: dark;
+  --bg: #111318;
+  --surface: #1c1f26;
+  --surface-soft: #242832;
+  --surface-strong: #0f1115;
+  --line: #323844;
+  --line-strong: #485061;
+  --ink: #f1f5f9;
+  --muted: #a5adba;
+  --faint: #737c8b;
+  --blue: #3b82f6;
+  --blue-deep: #2563eb;
+  --active-blue: #2c668b;
+  --code: #151922;
+  --focus: rgba(59, 130, 246, 0.28);
+  --control-bg: #344054;
+  --control-bg-hover: #1d2939;
+  --control-bg-active: #2b3443;
+  --control-border: transparent;
+  --control-color: #fff;
+  --control-muted: #aebacd;
+  --scrollbar-track: transparent;
+  --scrollbar-thumb: rgba(148, 163, 184, 0.34);
+  --scrollbar-thumb-hover: rgba(203, 213, 225, 0.62);
+  --shadow: none;
+}
+
+.session-list,
+.rail-panel,
+.sequence-timeline,
+.decision-patch-list,
+.decision-rail,
+.unified-chat-log,
+.chat-input-row textarea,
+.diagram-svg-stage,
+.app-modal,
+.modal-card,
+.modal-pre,
+.modal-textarea,
+.new-session-modal-body,
+#specification,
+#modelParametersInput,
+textarea,
+.frozen-spec-text {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+.session-list::-webkit-scrollbar,
+.rail-panel::-webkit-scrollbar,
+.sequence-timeline::-webkit-scrollbar,
+.decision-patch-list::-webkit-scrollbar,
+.decision-rail::-webkit-scrollbar,
+.unified-chat-log::-webkit-scrollbar,
+.chat-input-row textarea::-webkit-scrollbar,
+.diagram-svg-stage::-webkit-scrollbar,
+.app-modal::-webkit-scrollbar,
+.modal-card::-webkit-scrollbar,
+.modal-pre::-webkit-scrollbar,
+.modal-textarea::-webkit-scrollbar,
+.new-session-modal-body::-webkit-scrollbar,
+#specification::-webkit-scrollbar,
+#modelParametersInput::-webkit-scrollbar,
+textarea::-webkit-scrollbar,
+.frozen-spec-text::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.session-list::-webkit-scrollbar-track,
+.rail-panel::-webkit-scrollbar-track,
+.sequence-timeline::-webkit-scrollbar-track,
+.decision-patch-list::-webkit-scrollbar-track,
+.decision-rail::-webkit-scrollbar-track,
+.unified-chat-log::-webkit-scrollbar-track,
+.chat-input-row textarea::-webkit-scrollbar-track,
+.diagram-svg-stage::-webkit-scrollbar-track,
+.app-modal::-webkit-scrollbar-track,
+.modal-card::-webkit-scrollbar-track,
+.modal-pre::-webkit-scrollbar-track,
+.modal-textarea::-webkit-scrollbar-track,
+.new-session-modal-body::-webkit-scrollbar-track,
+#specification::-webkit-scrollbar-track,
+#modelParametersInput::-webkit-scrollbar-track,
+textarea::-webkit-scrollbar-track,
+.frozen-spec-text::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+.session-list::-webkit-scrollbar-thumb,
+.rail-panel::-webkit-scrollbar-thumb,
+.sequence-timeline::-webkit-scrollbar-thumb,
+.decision-patch-list::-webkit-scrollbar-thumb,
+.decision-rail::-webkit-scrollbar-thumb,
+.unified-chat-log::-webkit-scrollbar-thumb,
+.chat-input-row textarea::-webkit-scrollbar-thumb,
+.diagram-svg-stage::-webkit-scrollbar-thumb,
+.app-modal::-webkit-scrollbar-thumb,
+.modal-card::-webkit-scrollbar-thumb,
+.modal-pre::-webkit-scrollbar-thumb,
+.modal-textarea::-webkit-scrollbar-thumb,
+.new-session-modal-body::-webkit-scrollbar-thumb,
+#specification::-webkit-scrollbar-thumb,
+#modelParametersInput::-webkit-scrollbar-thumb,
+textarea::-webkit-scrollbar-thumb,
+.frozen-spec-text::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: var(--scrollbar-thumb);
+  background-clip: padding-box;
+}
+
+.session-list::-webkit-scrollbar-thumb:hover,
+.rail-panel::-webkit-scrollbar-thumb:hover,
+.sequence-timeline::-webkit-scrollbar-thumb:hover,
+.decision-patch-list::-webkit-scrollbar-thumb:hover,
+.decision-rail::-webkit-scrollbar-thumb:hover,
+.unified-chat-log::-webkit-scrollbar-thumb:hover,
+.chat-input-row textarea::-webkit-scrollbar-thumb:hover,
+.diagram-svg-stage::-webkit-scrollbar-thumb:hover,
+.app-modal::-webkit-scrollbar-thumb:hover,
+.modal-card::-webkit-scrollbar-thumb:hover,
+.modal-pre::-webkit-scrollbar-thumb:hover,
+.modal-textarea::-webkit-scrollbar-thumb:hover,
+.new-session-modal-body::-webkit-scrollbar-thumb:hover,
+#specification::-webkit-scrollbar-thumb:hover,
+#modelParametersInput::-webkit-scrollbar-thumb:hover,
+textarea::-webkit-scrollbar-thumb:hover,
+.frozen-spec-text::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+  background-clip: padding-box;
+}
+
+body.theme-dark h2,
+body.theme-dark h3,
+body.theme-dark .run-row strong {
+  color: var(--ink);
+}
+
+body.theme-dark .run-row {
+  color: var(--ink);
+  background: #151922;
+}
+

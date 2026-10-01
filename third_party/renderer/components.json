@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "scope": "local_diagram_renderer",
+  "license_text_normalization": {
+    "encoding": "UTF-8",
+    "line_endings": "LF",
+    "trailing_whitespace": "removed",
+    "terminal_newline": "required"
+  },
+  "components": [
+    {
+      "id": "viz-js",
+      "name": "Viz.js",
+      "version": "3.28.0",
+      "source_revision": "b9f689720033ec89b678cf0b151817728b6be1de",
+      "source_url": "https://github.com/mdaines/viz-js/tree/b9f689720033ec89b678cf0b151817728b6be1de",
+      "license_expression": "MIT",
+      "license_source_url": "https://raw.githubusercontent.com/mdaines/viz-js/b9f689720033ec89b678cf0b151817728b6be1de/LICENSE",
+      "license_file": "licenses/viz-js-MIT.txt",
+      "license_file_sha256": "f1fb91bf7cbcb42b2af56949e4fa909e1979d5b57c2826cabacdb4b631457720"
+    },
+    {
+      "id": "graphviz",
+      "name": "Graphviz",
+      "version": "15.0.0",
+      "source_archive_url": "https://gitlab.com/api/v4/projects/4207231/packages/generic/graphviz-releases/15.0.0/graphviz-15.0.0.tar.gz",
+      "source_archive_sha256": "06193df2f54cf0a505e6a2d154ed5df64d2e9ced50f8bf6e454049c1a59c8fd6",
+      "license_expression": "EPL-2.0",
+      "license_source_url": "https://gitlab.com/graphviz/graphviz/-/raw/15.0.0/LICENSE",
+      "license_file": "licenses/graphviz-EPL-2.0.txt",
+      "license_file_sha256": "8c349f80764d0648e645f41ef23772a70c995a0924b5235f735f4a3d09df127c",
+      "source_availability_file": "SOURCE_AVAILABILITY.md"
+    },
+    {
+      "id": "expat",
+      "name": "Expat",
+      "version": "2.8.1",
+      "source_archive_url": "https://github.com/libexpat/libexpat/releases/download/R_2_8_1/expat-2.8.1.tar.gz",
+      "source_archive_sha256": "a52eb72108be160e190b5cafa5bba8663f1313f2013e26060d1c18e26e31067b",
+      "license_expression": "MIT",
+      "license_source_url": "https://raw.githubusercontent.com/libexpat/libexpat/R_2_8_1/expat/COPYING",
+      "license_file": "licenses/expat-MIT.txt",
+      "license_file_sha256": "31b15de82aa19a845156169a17a5488bf597e561b2c318d159ed583139b25e87"
+    },
+    {
+      "id": "emscripten",
+      "name": "Emscripten",
+      "version": "5.0.5",
+      "source_revision": "5.0.5",
+      "source_url": "https://github.com/emscripten-core/emscripten/tree/5.0.5",
+      "license_expression": "MIT OR NCSA",
+      "license_source_url": "https://raw.githubusercontent.com/emscripten-core/emscripten/5.0.5/LICENSE",
+      "license_file": "licenses/emscripten-MIT-NCSA.txt",
+      "license_file_sha256": "06f2e6c024612605fc3c803b192983a26f19404eb54d78e399190d90ed32ac78"
+    },
+    {
+      "id": "musl",
+      "name": "musl libc",
+      "version": "emscripten-5.0.5-vendored-snapshot",
+      "source_revision": "emscripten-5.0.5",
+      "source_url": "https://github.com/emscripten-core/emscripten/tree/5.0.5/system/lib/libc/musl",
+      "license_expression": "MIT",
+      "license_source_url": "https://raw.githubusercontent.com/emscripten-core/emscripten/5.0.5/system/lib/libc/musl/COPYRIGHT",
+      "license_file": "licenses/musl-COPYRIGHT.txt",
+      "license_file_sha256": "f9bc4423732350eb0b3f7ed7e91d530298476f8fec0c6c427a1c04ade22655af"
+    }
+  ]
+}

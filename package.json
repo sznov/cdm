@@ -1,0 +1,28 @@
+{
+  "name": "conceptual-model-generator",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Frontend build tooling for Conceptual Model Generator.",
+  "license": "MIT",
+  "engines": {
+    "node": "24.18.0",
+    "npm": "11.16.0"
+  },
+  "packageManager": "npm@11.16.0",
+  "dependencies": {
+    "@viz-js/viz": "3.28.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true
+  },
+  "scripts": {
+    "build:frontend": "npm run typecheck:frontend && node frontend/build.mjs",
+    "prepare:source-assets": "node frontend/prepare-source-assets.mjs",
+    "typecheck:frontend": "tsc --project frontend/tsconfig.json"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.1",
+    "typescript": "7.0.2"
+  }
+}

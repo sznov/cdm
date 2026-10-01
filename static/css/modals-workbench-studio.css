@@ -1,0 +1,25 @@
+.studio-layout {
+  min-height: 0;
+  padding: 12px;
+  overflow: auto;
+}
+
+.studio-panel {
+  min-height: calc(100vh - 88px);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+.toolbar {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 7px;
+}
+
+.toolbar select {
+  width: min(360px, 100%);
+  min-width: 0;
+}
+

@@ -1,0 +1,34 @@
+.runs-panel {
+  display: grid;
+  gap: 10px;
+}
+
+.panel-heading {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: start;
+}
+
+.compact-heading {
+  align-items: center;
+}
+
+.panel-note {
+  margin: 3px 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.compact-heading button,
+.toolbar button,
+#clearTrace,
+#jumpToCurrent {
+  padding: 7px 10px;
+  border-color: var(--control-border);
+  background: var(--control-bg);
+  color: var(--control-color);
+  font-size: 0.76rem;
+}

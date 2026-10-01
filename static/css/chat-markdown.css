@@ -1,0 +1,61 @@
+.model-output-markdown {
+  height: auto;
+  min-height: auto;
+  max-height: none;
+  overflow: visible;
+  position: static;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.model-output-markdown::after {
+  content: none;
+}
+
+.model-output-markdown.is-empty::after {
+  display: none;
+}
+
+.model-output-markdown.is-empty {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.model-output-markdown p,
+.model-output-markdown h3,
+.model-output-markdown h4,
+.model-output-markdown h5 {
+  margin: 0 0 7px;
+}
+
+.model-output-markdown p:last-child,
+.model-output-markdown h3:last-child,
+.model-output-markdown h4:last-child,
+.model-output-markdown h5:last-child {
+  margin-bottom: 0;
+}
+
+.model-output-markdown code {
+  border-radius: 5px;
+  background: rgba(100, 116, 139, 0.14);
+  padding: 1px 4px;
+  font-family: var(--mono);
+}
+
+.model-output-markdown .markdown-code {
+  max-height: none;
+  overflow: visible;
+  margin: 0 0 8px;
+  border-radius: 7px;
+  background: #0b1020;
+  color: #e5e7eb;
+  padding: 9px;
+  font: 0.76rem/1.4 var(--mono);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.model-output-markdown .markdown-bullet {
+  padding-left: 10px;
+}
+

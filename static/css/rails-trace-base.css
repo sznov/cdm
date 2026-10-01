@@ -1,0 +1,51 @@
+.progress-card,
+.trace-detail-card,
+.decisions-card {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  padding: 12px;
+}
+
+.frozen-spec,
+.model-output-panel {
+  flex: 0 0 auto;
+}
+
+.unified-chat-panel {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto auto;
+  overflow: visible;
+}
+
+.small-button {
+  min-height: 28px;
+  padding: 5px 8px;
+  border-radius: 7px;
+  font-size: 0.76rem;
+  white-space: nowrap;
+}
+
+.view-log-button {
+  width: 30px;
+  min-width: 30px;
+  height: 30px;
+  min-height: 30px;
+  display: inline-grid;
+  place-items: center;
+  padding: 0;
+  border-color: var(--control-border);
+  border-radius: 7px;
+  background: var(--control-bg);
+  color: var(--control-color);
+  box-shadow: none;
+}
+
+.view-log-button:hover:not(:disabled) {
+  border-color: var(--control-border);
+  background: var(--control-bg-hover);
+  color: var(--ink);
+}
+

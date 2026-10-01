@@ -1,0 +1,116 @@
+.model-output-actions {
+  flex: 0 0 auto;
+}
+
+.model-output-actions button {
+  padding: 7px 10px;
+}
+
+.diagram-workspace .toolbar {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-left: auto;
+  pointer-events: auto;
+}
+
+.diagram-workspace .toolbar button,
+.diagram-workspace .toolbar .diagram-link {
+  min-width: 38px;
+  padding: 7px 9px;
+  border-color: var(--control-border);
+  background: var(--control-bg);
+  color: var(--control-color);
+  white-space: nowrap;
+}
+
+.diagram-workspace .toolbar .diagram-link:hover:not(.disabled) {
+  background: var(--control-bg-hover);
+}
+
+.diagram-workspace .toolbar .diagram-link.disabled {
+  background: var(--control-bg-active);
+  color: var(--control-muted);
+}
+
+.toolbar-icon-action {
+  width: 36px;
+  min-width: 36px;
+  height: 36px;
+  min-height: 36px;
+  padding: 0;
+  display: inline-grid;
+  place-items: center;
+}
+
+.send-icon-button {
+  width: 30px;
+  min-width: 30px;
+}
+
+.toolbar-icon-action svg {
+  display: block;
+  width: 17px;
+  height: 17px;
+  margin: 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.session-title-row .diagram-title-button.toolbar-icon-action {
+  flex: 0 0 24px;
+  width: 24px;
+  min-width: 24px;
+  height: 24px;
+  min-height: 24px;
+}
+
+.session-title-row .diagram-title-button.toolbar-icon-action svg {
+  width: 15px;
+  height: 15px;
+}
+
+.progress-card .toolbar #jumpToCurrent.toolbar-icon-action,
+.progress-card .toolbar #refreshRuns.toolbar-icon-action {
+  width: 39px;
+  min-width: 39px;
+  max-width: 39px;
+  height: 20px;
+  min-height: 20px;
+  max-height: 20px;
+  padding: 0;
+  border-radius: 9px;
+  font-size: 0;
+  line-height: 0;
+  white-space: normal;
+  flex: 0 0 39px;
+  box-sizing: border-box;
+}
+
+.progress-card .toolbar #jumpToCurrent.toolbar-icon-action svg,
+.progress-card .toolbar #refreshRuns.toolbar-icon-action svg {
+  width: 17px;
+  height: 17px;
+}
+
+#jumpToCurrent.is-following {
+  background: var(--control-bg-active);
+  border-color: var(--control-border);
+  color: var(--control-muted);
+  opacity: 0.65;
+  cursor: default;
+  pointer-events: none;
+}
+
+.progress-card .toolbar #jumpToCurrent.toolbar-icon-action:disabled {
+  background: var(--control-bg-active);
+  border-color: var(--control-border);
+  color: var(--control-muted);
+  opacity: 0.65;
+  cursor: default;
+  pointer-events: none;
+}
+

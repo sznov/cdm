@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "provider_id": "gemini",
+  "source": "bundled",
+  "origin": "bundled",
+  "retrieved_at_utc": "2026-07-11T00:00:00Z",
+  "stale": true,
+  "unverified": true,
+  "warning": "Using the bundled Gemini release snapshot; availability has not been verified against the configured endpoint.",
+  "provenance": {
+    "snapshot_id": "gemini-release-20260711",
+    "kind": "release_snapshot",
+    "authoritative": false
+  },
+  "models": [
+    {
+      "id": "gemma-4-31b-it",
+      "name": "Gemma 4 31B IT",
+      "modified_at": null,
+      "size": null,
+      "details": null
+    },
+    {
+      "id": "gemini-3.5-flash",
+      "name": "Gemini 3.5 Flash",
+      "modified_at": null,
+      "size": null,
+      "details": null
+    },
+    {
+      "id": "gemini-3.1-flash-lite-preview",
+      "name": "Gemini 3.1 Flash Lite Preview",
+      "modified_at": null,
+      "size": null,
+      "details": null
+    },
+    {
+      "id": "gemini-2.5-flash-lite",
+      "name": "Gemini 2.5 Flash Lite",
+      "modified_at": null,
+      "size": null,
+      "details": null
+    },
+    {
+      "id": "gemini-2.5-flash",
+      "name": "Gemini 2.5 Flash",
+      "modified_at": null,
+      "size": null,
+      "details": null
+    }
+  ]
+}

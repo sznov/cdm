@@ -1,0 +1,90 @@
+.results {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+}
+
+.inline-diagram-card {
+  min-width: 0;
+  margin-top: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.inline-diagram-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-soft);
+  padding: 8px 10px;
+}
+
+.inline-diagram-header h3 {
+  margin: 0;
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.inline-diagram-header span {
+  min-width: 0;
+  color: var(--muted);
+  font: 0.7rem/1.35 var(--mono);
+  overflow-wrap: anywhere;
+}
+
+.diagram-svg-stage {
+  min-height: 0;
+  max-height: 520px;
+  overflow: auto;
+  background: #ffffff;
+  padding: var(--diagram-pan-slack);
+  scroll-padding-top: 0;
+}
+
+.diagram-svg-stage:not(:empty) {
+  cursor: grab;
+}
+
+.diagram-workspace .diagram-svg-stage.zoomable-diagram {
+  height: 100%;
+  max-height: none;
+}
+
+.diagram-svg-stage:empty::before {
+  content: none;
+}
+
+.diagram-svg-image {
+  display: block;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+body.theme-dark .diagram-workspace,
+body.theme-dark section.diagram-workspace .diagram-svg-stage,
+body.theme-dark section.diagram-workspace .zoomable-diagram {
+  background: rgb(27, 27, 27);
+}
+
+body.theme-dark section.diagram-workspace .panel-heading {
+  background: transparent;
+}
+
+body.theme-dark .diagram-svg-stage {
+  isolation: isolate;
+}
+
+body.theme-dark .diagram-svg-image {
+  background: rgb(27, 27, 27);
+  mix-blend-mode: normal;
+}
+

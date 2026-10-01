@@ -1,0 +1,21 @@
+.unified-chat-log {
+  display: grid;
+  gap: 10px;
+  min-height: 0;
+  max-height: none;
+  overflow: auto;
+  overflow-anchor: none;
+  align-content: start;
+  position: relative;
+  padding: 30px 4px 2px;
+  scroll-padding-top: 12px;
+}
+
+.unified-chat-log::before {
+  content: none;
+}
+
+.unified-chat-panel.no-model-output .unified-chat-log {
+  max-height: none;
+}
+

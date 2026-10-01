@@ -1,0 +1,13 @@
+.chat-panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.chat-panel-header h2 {
+  letter-spacing: 0;
+  text-transform: none;
+}
+

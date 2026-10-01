@@ -1,0 +1,110 @@
+.session-title-row .diagram-title-button,
+.diagram-control-mount .header-icon-button,
+.diagram-control-mount .diagram-title-button {
+  flex: 0 0 24px;
+  align-self: center;
+  width: 24px;
+  min-width: 24px;
+  height: 24px;
+  min-height: 24px;
+  padding: 0;
+  border-color: transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  display: inline-grid;
+  place-items: center;
+}
+
+.session-title-row > #renameSessionButton,
+.session-title-row > #deleteSessionButton {
+  flex: 0 0 22px;
+  width: 22px;
+  min-width: 22px;
+  height: 22px;
+  min-height: 22px;
+  padding: 0;
+  border-color: transparent;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--muted);
+}
+
+.session-title-row h2 {
+  flex: 0 1 auto;
+}
+
+.session-diagram-controls {
+  flex: 0 0 auto;
+  min-width: max-content;
+  max-width: 100%;
+  margin-left: auto;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  overflow: visible;
+}
+
+.session-title-row .header-icon-button svg,
+.session-title-row .diagram-title-button svg,
+.diagram-control-mount .header-icon-button svg,
+.diagram-control-mount .diagram-title-button svg {
+  display: block;
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.session-title-row .diagram-title-button.diagram-link,
+.session-title-row .diagram-title-button.diagram-link:hover:not(.disabled),
+.diagram-control-mount .diagram-title-button.diagram-link,
+.diagram-control-mount .diagram-title-button.diagram-link:hover:not(.disabled) {
+  background: transparent;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.session-title-row .header-icon-button:hover:not(:disabled),
+.session-title-row .diagram-title-button:hover:not(:disabled):not(.disabled),
+.diagram-control-mount .header-icon-button:hover:not(:disabled),
+.diagram-control-mount .diagram-title-button:hover:not(:disabled):not(.disabled) {
+  background: var(--surface-soft);
+  color: var(--ink);
+}
+
+.session-title-row .destructive-icon-button:hover:not(:disabled) {
+  background: #fef3f2;
+  color: #b42318;
+}
+
+.session-title-row > #renameSessionButton:hover:not(:disabled),
+.session-title-row > #renameSessionButton:focus-visible,
+.session-title-row > #renameSessionButton:active:not(:disabled),
+.session-title-row > #deleteSessionButton:hover:not(:disabled),
+.session-title-row > #deleteSessionButton:focus-visible,
+.session-title-row > #deleteSessionButton:active:not(:disabled) {
+  background: transparent;
+  box-shadow: none;
+  color: var(--ink);
+}
+
+.session-title-row .header-icon-button:disabled,
+.session-title-row .diagram-title-button.disabled,
+.diagram-control-mount .header-icon-button:disabled,
+.diagram-control-mount .diagram-title-button.disabled {
+  opacity: 0.35;
+  background: transparent;
+  color: var(--muted);
+}
+
+.session-title-row .is-overflowed {
+  display: none;
+}
+

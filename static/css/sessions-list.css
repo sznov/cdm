@@ -1,0 +1,198 @@
+.session-list {
+  min-height: 0;
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  overflow: auto;
+}
+
+.session-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 5px;
+  position: relative;
+  padding: 9px 28px 9px 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--ink);
+  background: transparent;
+  text-align: left;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+
+.session-row.selected {
+  background: rgba(37, 99, 235, 0.055);
+}
+
+.session-row.status-completed {
+  background: #ecfdf3;
+  border-color: #abefc6;
+}
+
+.session-row.status-running,
+.session-row.status-created {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.session-row.status-failed,
+.session-row.status-error {
+  background: #fef3f2;
+  border-color: #fecdca;
+}
+
+.session-row.status-cancelled {
+  background: #fffbeb;
+  border-color: #fde68a;
+}
+
+.session-row.selected,
+.session-row.status-completed.selected,
+.session-row.status-running.selected,
+.session-row.status-created.selected,
+.session-row.status-failed.selected,
+.session-row.status-error.selected,
+.session-row.status-cancelled.selected {
+  border-color: rgba(59, 130, 246, 0.85);
+  background-image: linear-gradient(90deg, rgba(59, 130, 246, 0.18), transparent 38%);
+  box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.28);
+}
+
+.session-row strong {
+  grid-column: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.82rem;
+}
+
+.session-title-datetime {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+}
+
+.session-row span {
+  grid-column: 1;
+  color: var(--muted);
+  font: 0.72rem/1.35 var(--mono);
+}
+
+body:not(.theme-dark) .session-row:hover:not(:disabled) {
+  border-color: rgba(37, 99, 235, 0.28);
+  color: var(--ink);
+  background: rgba(37, 99, 235, 0.055);
+}
+
+body:not(.theme-dark) .session-row.status-completed:hover:not(:disabled) {
+  border-color: #75e0a7;
+  background: #dcfae6;
+}
+
+body:not(.theme-dark) .session-row.status-running:hover:not(:disabled),
+body:not(.theme-dark) .session-row.status-created:hover:not(:disabled) {
+  border-color: #93c5fd;
+  background: #dbeafe;
+}
+
+body:not(.theme-dark) .session-row.status-failed:hover:not(:disabled),
+body:not(.theme-dark) .session-row.status-error:hover:not(:disabled) {
+  border-color: #fda29b;
+  background: #fee4e2;
+}
+
+body:not(.theme-dark) .session-row.status-cancelled:hover:not(:disabled) {
+  border-color: #fbbf24;
+  background: #fef3c7;
+}
+
+body:not(.theme-dark) .session-row.selected:hover:not(:disabled),
+body:not(.theme-dark) .session-row.status-completed.selected:hover:not(:disabled),
+body:not(.theme-dark) .session-row.status-running.selected:hover:not(:disabled),
+body:not(.theme-dark) .session-row.status-created.selected:hover:not(:disabled),
+body:not(.theme-dark) .session-row.status-failed.selected:hover:not(:disabled),
+body:not(.theme-dark) .session-row.status-error.selected:hover:not(:disabled),
+body:not(.theme-dark) .session-row.status-cancelled.selected:hover:not(:disabled) {
+  border-color: rgba(59, 130, 246, 0.85);
+  background-color: rgba(37, 99, 235, 0.055);
+  background-image: linear-gradient(90deg, rgba(59, 130, 246, 0.18), transparent 38%);
+}
+
+body.theme-dark .session-row {
+  color: #e5e7eb;
+}
+
+body.theme-dark .session-row.status-completed {
+  border-color: rgba(134, 239, 172, 0.28);
+  background: rgba(22, 163, 74, 0.16);
+}
+
+body.theme-dark .session-row.status-running,
+body.theme-dark .session-row.status-created {
+  border-color: rgba(147, 197, 253, 0.32);
+  background: rgba(37, 99, 235, 0.18);
+}
+
+body.theme-dark .session-row.status-failed,
+body.theme-dark .session-row.status-error {
+  border-color: rgba(252, 165, 165, 0.32);
+  background: rgba(220, 38, 38, 0.16);
+}
+
+body.theme-dark .session-row.status-cancelled {
+  border-color: rgba(251, 191, 36, 0.32);
+  background: rgba(245, 158, 11, 0.16);
+}
+
+body.theme-dark .session-row:hover:not(:disabled) {
+  border-color: rgba(96, 165, 250, 0.32);
+  color: #e5e7eb;
+  background: rgba(96, 165, 250, 0.09);
+}
+
+body.theme-dark .session-row.status-completed:hover:not(:disabled) {
+  border-color: rgba(134, 239, 172, 0.4);
+  background: rgba(22, 163, 74, 0.22);
+}
+
+body.theme-dark .session-row.status-running:hover:not(:disabled),
+body.theme-dark .session-row.status-created:hover:not(:disabled) {
+  border-color: rgba(147, 197, 253, 0.42);
+  background: rgba(37, 99, 235, 0.24);
+}
+
+body.theme-dark .session-row.status-failed:hover:not(:disabled),
+body.theme-dark .session-row.status-error:hover:not(:disabled) {
+  border-color: rgba(252, 165, 165, 0.42);
+  background: rgba(220, 38, 38, 0.22);
+}
+
+body.theme-dark .session-row.status-cancelled:hover:not(:disabled) {
+  border-color: rgba(251, 191, 36, 0.42);
+  background: rgba(245, 158, 11, 0.22);
+}
+
+body.theme-dark .session-row.selected,
+body.theme-dark .session-row.status-completed.selected,
+body.theme-dark .session-row.status-running.selected,
+body.theme-dark .session-row.status-created.selected,
+body.theme-dark .session-row.status-failed.selected,
+body.theme-dark .session-row.status-error.selected,
+body.theme-dark .session-row.status-cancelled.selected,
+body.theme-dark .session-row.selected:hover:not(:disabled),
+body.theme-dark .session-row.status-completed.selected:hover:not(:disabled),
+body.theme-dark .session-row.status-running.selected:hover:not(:disabled),
+body.theme-dark .session-row.status-created.selected:hover:not(:disabled),
+body.theme-dark .session-row.status-failed.selected:hover:not(:disabled),
+body.theme-dark .session-row.status-error.selected:hover:not(:disabled),
+body.theme-dark .session-row.status-cancelled.selected:hover:not(:disabled) {
+  border-color: rgba(96, 165, 250, 0.82);
+  background-image: none;
+  box-shadow: inset 0 0 0 1px rgba(96, 165, 250, 0.22);
+}
+
+body.theme-dark .session-row span {
+  color: #a7b0bf;
+}
+

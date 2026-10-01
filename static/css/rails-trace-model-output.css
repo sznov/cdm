@@ -1,0 +1,41 @@
+.frozen-spec.is-hidden .frozen-spec-text,
+.frozen-spec.is-hidden #viewSpecButton,
+.frozen-spec.is-hidden #hideSpecButton {
+  display: none;
+}
+
+.frozen-spec.is-hidden #showSpecButton {
+  display: inline-flex;
+}
+
+.frozen-spec-text {
+  max-height: 72px;
+  margin-top: 8px;
+  overflow: hidden;
+  color: var(--muted);
+  white-space: pre-wrap;
+}
+
+.frozen-spec.expanded .frozen-spec-text {
+  max-height: 42vh;
+  overflow: auto;
+}
+
+.model-output-panel {
+  min-height: 0;
+  display: block;
+  overflow: hidden;
+}
+
+.model-output {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.model-output-panel .panel-heading {
+  align-items: flex-start;
+}
+

@@ -1,0 +1,99 @@
+.decision-rail {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  min-height: 0;
+  overflow: auto;
+  padding: 2px 4px 2px 0;
+}
+
+.decision-rail-empty {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  color: var(--muted);
+  background: var(--surface-soft);
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+.decision-rail-heading {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.84rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.decision-rail > .decision-rail-heading:first-child {
+  margin-top: 0;
+}
+
+.decision-run-info-card {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: var(--surface-soft);
+  color: var(--ink);
+  font-size: 0.78rem;
+}
+
+.decision-run-info-row {
+  display: grid;
+  grid-template-columns: minmax(72px, auto) minmax(0, 1fr);
+  gap: 10px;
+  align-items: baseline;
+}
+
+.decision-run-info-row span {
+  color: var(--muted);
+}
+
+.decision-run-info-row strong {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--ink);
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.decision-spec-card {
+  max-height: min(44dvh, 420px);
+  min-height: min(30dvh, 260px);
+  min-width: 0;
+  overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  background: var(--surface-soft);
+  color: var(--ink);
+  font: 0.78rem/1.42 var(--mono);
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+.decision-spec-card::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.decision-spec-card::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+.decision-spec-card::-webkit-scrollbar-thumb {
+  border: 2px solid var(--scrollbar-track);
+  border-radius: 999px;
+  background: var(--scrollbar-thumb);
+}
+
+.decision-spec-card::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+

@@ -1,0 +1,30 @@
+.active-session-workspace {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px 12px;
+  overflow: hidden;
+}
+
+.active-session-workspace .frozen-spec {
+  max-height: 22dvh;
+}
+
+.active-session-workspace .phase-status-panel {
+  max-height: 26dvh;
+}
+
+.active-session-workspace.output-expanded {
+  flex-direction: column;
+}
+
+.empty-session-state {
+  align-self: center;
+  justify-self: center;
+  max-width: 520px;
+  padding: 28px;
+  text-align: center;
+  color: var(--muted);
+}
+

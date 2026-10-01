@@ -1,0 +1,61 @@
+.transcript-decision-section {
+  width: 100%;
+  min-width: 0;
+  position: relative;
+  display: grid;
+  gap: 10px;
+  border: 0;
+  background: transparent;
+  padding: 0 0 10px;
+}
+
+.transcript-checkpoint-card {
+  display: grid;
+  gap: 7px;
+}
+
+.transcript-card-summary {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.82rem;
+  line-height: 1.35;
+  white-space: pre-line;
+}
+
+.transcript-decisions-group {
+  display: grid;
+  gap: 10px;
+  scroll-margin-top: 14px;
+}
+
+.transcript-decision-section.is-highlighted {
+  animation: transcript-decision-highlight 1s ease-out;
+}
+
+@keyframes transcript-decision-highlight {
+  0% {
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--red) 34%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+.transcript-decision-section h3,
+.transcript-section-heading {
+  margin: 8px 0 0;
+  color: var(--ink);
+  font-size: 0.84rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.transcript-decision-card {
+  background: var(--surface-soft);
+}
+
+.transcript-decision-footer {
+  justify-content: flex-end;
+  padding-top: 2px;
+}
+

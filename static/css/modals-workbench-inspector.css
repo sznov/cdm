@@ -1,0 +1,40 @@
+.trace-inspector {
+  min-width: 0;
+  max-width: none;
+  max-height: 520px;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface-soft);
+  padding: 10px;
+}
+
+.studio-status {
+  margin: 10px 0 0;
+}
+
+.trace-inspector h3 {
+  margin: 0 0 10px;
+  color: #1d2939;
+  font-size: 0.86rem;
+}
+
+.trace-inspector-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 8px;
+  margin: 10px 0 12px;
+}
+
+.trace-inspector-actions button {
+  flex: 0 0 auto;
+  min-width: 48px;
+  padding: 6px 9px;
+  border-radius: 7px;
+  font-size: 0.72rem;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+

@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Conceptual Model Generator</title>
+    <script>
+      (() => {
+        try {
+          const stored = localStorage.getItem("cdmapp.theme");
+          const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+          document.documentElement.dataset.initialTheme = stored || (prefersDark ? "dark" : "light");
+        } catch {
+          document.documentElement.dataset.initialTheme = "dark";
+        }
+      })();
+    </script>
+    <style>
+      html,
+      body {
+        min-height: 100%;
+        margin: 0;
+      }
+
+      body.app-booting {
+        background: #edf0f4;
+      }
+
+      html[data-initial-theme="dark"] body.app-booting {
+        background: #111318;
+      }
+
+      body.app-booting .codex-shell {
+        visibility: hidden;
+      }
+    </style>
+    <link rel="stylesheet" href="/static/css/main.css?v=20260708-viewport-replay" />
+  </head>
+  <body class="app-booting" aria-busy="true">
+    <main class="codex-shell">
+      <aside class="session-rail">
+        <div class="rail-brand">
+          <div class="rail-brand-actions">
+            <button id="toggleSessionRailButton" class="rail-tool-button rail-collapse-button" type="button" title="Collapse sessions" aria-label="Collapse sessions">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="m15 18-6-6 6-6"></path>
+              </svg>
+            </button>
+            <button id="themeToggle" class="icon-button" type="button" title="Toggle theme">◐</button>
+            <button id="compactSessionsButton" class="icon-button compact-sessions-button" type="button" title="Show sessions" aria-label="Show sessions" aria-expanded="false" aria-controls="sessionList">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M5 7h14"></path>
+                <path d="M5 12h14"></path>
+                <path d="M5 17h14"></path>
+              </svg>
+            </button>
+            <button id="newSessionButton" class="new-session-button" type="button" title="New session" aria-label="New session">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 5v14M5 12h14"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="rail-section-heading sessions-heading">
+          <span aria-hidden="true"></span>
+        </div>
+        <div id="sessionList" class="session-list"></div>
+      </aside>
+
+      <section class="session-main">
+        <header class="session-header">
+          <div class="session-title-block">
+            <div class="session-title-row">
+              <h2 id="sessionTitle">No session selected</h2>
+              <input id="sessionTitleInput" class="session-title-input" type="text" maxlength="160" hidden aria-label="Session title" />
+              <p id="runArchiveSummary" class="panel-note" hidden>Create a session to start modeling.</p>
+              <button id="renameSessionButton" class="header-icon-button" type="button" disabled hidden title="Rename title" aria-label="Rename title">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M12 20h9"></path>
+                  <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path>
+                </svg>
+              </button>
+              <button id="deleteSessionButton" class="header-icon-button destructive-icon-button" type="button" disabled hidden title="Delete session" aria-label="Delete session">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M3 6h18"></path>
+                  <path d="M8 6V4h8v2"></path>
+                  <path d="M6 6l1 16h10l1-16"></path>
+                  <path d="M10 11v6"></path>
+                  <path d="M14 11v6"></path>
+                </svg>
+              </button>
+              <div id="sessionDiagramControls" class="session-diagram-controls" aria-label="Working model controls">
+                <button id="diagramFitButton" class="header-icon-button diagram-title-button" type="button" title="Fit to view" disabled>Fit</button>
+                <button id="diagramZoomOutButton" class="header-icon-button diagram-title-button" type="button" title="Zoom out" disabled>−</button>
+                <button id="diagramZoomInButton" class="header-icon-button diagram-title-button" type="button" title="Zoom in" disabled>+</button>
+                <button id="diagramResetButton" class="header-icon-button diagram-title-button" type="button" title="Reset zoom" disabled>Reset</button>
+                <button id="viewPlantumlSourceButton" class="header-icon-button diagram-title-button" type="button" title="View PlantUML source" disabled>PUML</button>
+                <button id="viewJsonIrButton" class="header-icon-button diagram-title-button" type="button" title="View JSON IR" disabled>JSON</button>
+                <a id="workingModelDiagramLink" class="header-icon-button diagram-title-button diagram-link disabled" href="#" target="_blank" rel="noreferrer" title="Open diagram in a new tab" aria-disabled="true" tabindex="-1">Open</a>
+              </div>
+              <div class="header-overflow" id="headerOverflow">
+                <button id="headerOverflowButton" class="header-icon-button overflow-menu-button" type="button" title="More actions" aria-label="More actions" aria-haspopup="menu" aria-expanded="false"></button>
+                <div id="headerOverflowMenu" class="overflow-menu" role="menu" hidden></div>
+              </div>
+            </div>
+          </div>
+          <div class="hero-actions">
+            <button id="sessionDecisionNotice" class="decision-pending-badge session-decision-notice" type="button" hidden></button>
+            <div id="runIdBadge" class="run-id-badge" hidden>No run yet</div>
+            <div id="runtimeHarnessBadge" class="run-id-badge" hidden></div>
+          </div>
+        </header>
+
+        <aside
+          id="startupRecoveryBanner"
+          class="startup-recovery-banner"
+          role="region"
+          aria-label="Startup recovery notice"
+          hidden
+        >
+          <span id="startupRecoveryMessage" role="status" aria-live="polite"></span>
+          <button
+            id="dismissStartupRecoveryButton"
+            class="startup-recovery-dismiss"
+            type="button"
+            aria-label="Dismiss recovery notice"
+          >Dismiss</button>
+        </aside>
+
+        <aside
+          id="runtimeHealthBanner"
+          class="startup-recovery-banner"
+          role="region"
+          aria-label="Runtime recovery notice"
+          hidden
+        >
+          <span id="runtimeHealthMessage" role="status" aria-live="polite"></span>
+          <button
+            id="dismissRuntimeHealthButton"
+            class="startup-recovery-dismiss"
+            type="button"
+            aria-label="Dismiss runtime recovery notice"
+          >Dismiss</button>
+        </aside>
+
+        <div id="emptySessionState" class="empty-session-state">
+          <h2>Start a modeling session</h2>
+          <p>Use + in Sessions to provide a specification.</p>
+        </div>
+
+        <section id="activeSessionWorkspace" class="active-session-workspace" hidden>
+          <article id="frozenSpecPanel" class="frozen-spec is-hidden" hidden>
+            <div class="frozen-spec-header">
+              <strong>Specification</strong>
+              <div class="toolbar">
+                <button id="viewSpecButton" type="button">View all</button>
+                <button id="hideSpecButton" type="button">Hide</button>
+                <button id="showSpecButton" type="button" hidden>Show specification</button>
+              </div>
+            </div>
+            <div id="frozenSpecText" class="frozen-spec-text"></div>
+          </article>
+
+          <section id="livePhasePanel" class="model-output-panel phase-status-panel" role="button" tabindex="0" hidden>
+            <div class="phase-status-row">
+              <span class="phase-spinner" aria-hidden="true"></span>
+              <div>
+                <h2 id="phaseStatusTitle">Working</h2>
+                <p id="phaseStatusText" class="panel-note">Idle.</p>
+              </div>
+              <button id="stopButton" class="danger phase-stop-button" type="button" disabled hidden>Stop</button>
+            </div>
+            <pre id="rawOutput" class="model-output" aria-hidden="true"></pre>
+          </section>
+
+        </section>
+      </section>
+
+      <div id="sessionRailResizer" class="app-column-resizer session-column-resizer" role="separator" aria-orientation="vertical" tabindex="0" title="Resize sessions" aria-label="Resize sessions"></div>
+
+      <section class="unified-chat-panel" hidden>
+        <button id="toggleChatRailButton" class="chat-rail-toggle" type="button" title="Show review rail" aria-label="Show review rail" aria-expanded="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="m15 18-6-6 6-6"></path>
+          </svg>
+        </button>
+        <div id="decisionRail" class="decision-rail" aria-live="polite"></div>
+        <div id="unifiedChatLog" class="unified-chat-log build-log-hidden" aria-live="polite" hidden>
+          <article id="modelOutputMarkdown" class="chat-message assistant model-output-markdown">
+            <div class="chat-message-header">
+              <strong>Current output</strong>
+            </div>
+            <div class="chat-message-body">Waiting for model output...</div>
+          </article>
+        </div>
+        <div id="chatCorrectionConfirm" class="chat-confirm" hidden>
+          <span>This looks like a correction. Apply it as a patch?</span>
+          <button id="confirmCorrectionButton" type="button">Apply correction</button>
+          <button id="askInsteadButton" type="button">Ask instead</button>
+        </div>
+        <div class="chat-input-row">
+          <div class="chat-input-main">
+            <div id="unifiedDecisionSelectionBadge" class="chat-decision-selection-badge" hidden></div>
+            <div class="chat-composer-stack">
+              <div class="chat-composer-tab">
+                <button id="viewBuildLogButton" class="view-log-button" type="button" title="View build log" aria-label="View build log"></button>
+                <button id="sendUnifiedChatButton" type="button" disabled title="Send" aria-label="Send">Send</button>
+              </div>
+              <div class="chat-textarea-shell">
+                <textarea
+                  id="unifiedChatText"
+                  rows="1"
+                  spellcheck="false"
+                  placeholder="Request a model change..."
+                  aria-label="Request a model change or ask for an explanation"
+                  title="Request a model change or ask for an explanation"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div id="chatRailResizer" class="app-column-resizer chat-column-resizer" role="separator" aria-orientation="vertical" tabindex="0" title="Resize build log" aria-label="Resize build log"></div>
+
+      <aside class="progress-rail" hidden>
+        <nav class="right-rail-tabs" aria-label="Run inspector sections">
+          <button class="right-rail-tab is-active" type="button" data-rail-tab="progress">Progress</button>
+          <button class="right-rail-tab" type="button" data-rail-tab="step" hidden>Step</button>
+          <button class="right-rail-tab" type="button" data-rail-tab="decisions">
+            <span>Decisions</span>
+            <span id="decisionPendingBadge" class="decision-pending-badge rail-tab-count" hidden></span>
+          </button>
+        </nav>
+
+        <section class="progress-card rail-panel is-active" data-rail-panel="progress">
+          <div class="rail-panel-actions">
+            <p id="status" class="panel-note" hidden>Idle.</p>
+            <p id="jobInfo" class="job-info" hidden></p>
+            <div class="toolbar">
+            <button id="jumpToCurrent" class="toolbar-icon-action" type="button" title="Jump to current" aria-label="Jump to current">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 20V6"></path>
+                <path d="m6 12 6-6 6 6"></path>
+              </svg>
+            </button>
+            <button id="refreshRuns" class="toolbar-icon-action" type="button" title="Refresh" aria-label="Refresh">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M4 12a8 8 0 0 1 13.6-5.7"></path>
+                <path d="M18 3v5h-5"></path>
+                <path d="M20 12a8 8 0 0 1-13.6 5.7"></path>
+                <path d="M6 21v-5h5"></path>
+              </svg>
+            </button>
+            <button id="clearTrace" type="button" hidden>Clear</button>
+            </div>
+          </div>
+          <div id="sequenceTimeline" class="sequence-timeline compact-sequence"></div>
+        </section>
+
+        <section class="progress-card trace-detail-card rail-panel" data-rail-panel="step" hidden>
+          <div class="panel-heading compact-heading">
+            <h3 id="traceInspectorTitle">Select a step</h3>
+            <div class="toolbar step-run-actions">
+              <button id="retryRunButton" type="button" disabled>Retry run</button>
+              <button id="resumeRunButton" type="button" disabled>Resume</button>
+            </div>
+          </div>
+          <div id="traceInspector" class="trace-detail"></div>
+        </section>
+
+        <section class="progress-card decision-patches rail-panel" data-rail-panel="decisions" hidden>
+          <div id="decisionPatchList" class="decision-patch-list">No decision points or assumptions available.</div>
+          <div class="decision-patches-footer">
+            <button id="applyDecisionPatchesButton" type="button" disabled>Apply</button>
+          </div>
+        </section>
+
+      </aside>
+
+      <section class="diagram-workspace" hidden>
+        <div id="diagramControlMount" class="diagram-control-mount" aria-label="Working model controls"></div>
+        <p id="diagramSvgStatus" class="panel-note diagram-status-inline" hidden></p>
+        <div id="diagramSvg" class="diagram-svg-stage zoomable-diagram"></div>
+      </section>
+    </main>
+
+    <dialog id="newSessionModal" class="app-modal wide-modal">
+      <form method="dialog" class="modal-card">
+        <div class="modal-header">
+          <div>
+            <h2>New session</h2>
+            <p class="panel-note">Choose a modeling harness and provide the data requirements specification.</p>
+          </div>
+          <button id="closeSessionModalButton" class="icon-button" value="cancel" type="button">×</button>
+        </div>
+        <div class="new-session-modal-body">
+          <label class="runtime-harness-field">
+            <span>Harness</span>
+            <select id="runtimeHarnessSelect"></select>
+          </label>
+          <div class="compact-grid">
+            <label>Provider <select id="providerSelect"></select></label>
+            <label class="model-select-field">
+              Model
+              <span class="model-select-row">
+                <select id="modelSelect"></select>
+                <button id="modelRefreshButton" class="model-refresh-button" type="button" title="Refresh provider model list" aria-label="Refresh provider model list">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M4 12a8 8 0 0 1 13.6-5.7"></path>
+                    <path d="M18 3v5h-5"></path>
+                    <path d="M20 12a8 8 0 0 1-13.6 5.7"></path>
+                    <path d="M6 21v-5h5"></path>
+                  </svg>
+                </button>
+              </span>
+            </label>
+            <label id="customModelField" class="custom-model-field" hidden>Custom model <input id="modelInput" type="text" autocomplete="off" /></label>
+          </div>
+          <label id="modelParametersField" class="model-parameters-field" hidden>
+            Advanced model parameters
+            <textarea id="modelParametersInput" rows="4" spellcheck="false" placeholder="{}"></textarea>
+          </label>
+          <p id="newSessionError" class="status session-form-error" role="alert" hidden></p>
+          <div class="specification-field">
+            <div class="specification-label-row">
+              <label for="specification">Specification</label>
+              <div class="specification-upload-controls">
+                <input
+                  id="specificationFileInput"
+                  type="file"
+                  accept=".txt,.md"
+                  hidden
+                />
+                <button id="uploadSpecificationButton" class="file-upload-button" type="button">Upload text file</button>
+                <span id="specificationFileStatus" class="file-upload-status" hidden></span>
+              </div>
+            </div>
+            <textarea id="specification" spellcheck="false"></textarea>
+          </div>
+          <section class="post-run-corrections" hidden>
+            <div>
+              <label class="check correction-auto-check"><input id="autoCorrectionSequence" type="checkbox" /> Auto-run selected correction template after run</label>
+            </div>
+            <label class="correction-template-field">
+              Correction template
+              <select id="correctionTemplateSelect"></select>
+            </label>
+            <div id="correctionTemplateDescription" class="runtime-hint correction-template-description"></div>
+          </section>
+          <details hidden>
+            <summary>Run options</summary>
+            <div class="compact-grid">
+              <label>Iterations <input id="maxIterations" type="number" min="1" max="1000" value="1000" /></label>
+              <label>Retries <input id="batchRetries" type="number" min="0" max="10" value="10" /></label>
+              <label>No Progress <input id="noProgress" type="number" min="1" max="100" value="2" /></label>
+              <label>Tokens <input id="numPredict" type="number" min="1" value="32768" /></label>
+              <label>Temperature <input id="temperature" type="number" min="0" step="0.05" placeholder="default" /></label>
+              <label>Top P <input id="topP" type="number" min="0" max="1" step="0.05" placeholder="default" /></label>
+            </div>
+            <label class="check"><input id="think" type="checkbox" /> Enable thinking template flag</label>
+            <label class="check"><input id="languageRepair" type="checkbox" /> Repair entity-name language</label>
+            <label class="check"><input id="semanticCritic" type="checkbox" /> Spec-aware semantic critic</label>
+            <label class="check"><input id="completionCheck" type="checkbox" /> Completion check</label>
+            <label class="check"><input id="inferImplicitIdentifiers" type="checkbox" /> Infer omitted identifier context</label>
+          </details>
+        </div>
+        <div class="modal-actions new-session-modal-actions">
+          <span id="modelRefreshStatus" class="model-refresh-status" role="status" aria-live="polite"></span>
+          <button id="runButton" class="primary" type="button" disabled>Start</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="textModal" class="app-modal wide-modal">
+      <form method="dialog" class="modal-card">
+        <div class="modal-header">
+          <h2 id="textModalTitle">Details</h2>
+          <div class="modal-header-actions">
+            <button id="copyTextModalButton" class="toolbar-icon-action" type="button" title="Copy" aria-label="Copy"></button>
+            <button id="downloadTextModalButton" class="toolbar-icon-action" type="button" title="Download" aria-label="Download"></button>
+            <button id="closeTextModalButton" class="icon-button" type="button">×</button>
+          </div>
+        </div>
+        <textarea id="textModalBody" class="modal-pre modal-textarea" readonly spellcheck="false"></textarea>
+      </form>
+    </dialog>
+
+    <dialog id="buildLogModal" class="app-modal wide-modal build-log-modal">
+      <form method="dialog" class="modal-card">
+        <div class="modal-header">
+          <h2>Build log</h2>
+          <button id="closeBuildLogModalButton" class="icon-button" type="button">×</button>
+        </div>
+        <div id="buildLogModalBody" class="build-log-modal-body"></div>
+      </form>
+    </dialog>
+
+    <dialog id="deleteSessionModal" class="app-modal delete-session-modal" aria-labelledby="deleteSessionHeading" aria-describedby="deleteSessionDescription">
+      <form method="dialog" class="modal-card delete-session-card" aria-busy="false">
+        <div class="modal-header">
+          <div>
+            <h2 id="deleteSessionHeading">Delete session</h2>
+            <p id="deleteSessionDescription" class="panel-note">This permanently removes the session and its stored run artifacts from this local copy.</p>
+          </div>
+          <button id="closeDeleteSessionModalButton" class="icon-button" type="button" title="Close" aria-label="Close delete session dialog">×</button>
+        </div>
+        <div class="delete-session-summary">
+          <span>Session</span>
+          <strong id="deleteSessionTitle">Untitled session</strong>
+          <small id="deleteSessionSubtitle"></small>
+        </div>
+        <p id="deleteSessionWarning" class="delete-session-warning" role="alert" aria-live="polite" hidden></p>
+        <div class="modal-actions delete-session-actions">
+          <button id="cancelDeleteSessionButton" class="delete-session-cancel" type="button">Cancel</button>
+          <button id="confirmDeleteSessionButton" class="delete-session-confirm" type="button">Delete session</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="legacy-hidden" hidden>
+      <div id="runList"></div>
+      <div id="history"></div>
+      <pre id="workingModel"></pre>
+      <pre id="plantuml"></pre>
+      <pre id="inputPrompt"></pre>
+      <button id="runCorrectionSequenceButton" type="button"></button>
+      <textarea id="correctionText"></textarea>
+      <button id="sendCorrectionButton" type="button"></button>
+      <div id="correctionChatLog"></div>
+      <textarea id="questionText"></textarea>
+      <button id="sendQuestionButton" type="button"></button>
+      <div id="questionChatLog"></div>
+    </div>
+
+    <!-- source-import-map:start -->
+    <script type="importmap">
+      {
+        "imports": {
+          "@viz-js/viz": "/static/vendor/viz.js"
+        }
+      }
+    </script>
+    <!-- source-import-map:end -->
+    <script type="module" src="/static/js/main.js?v=20260708-viewport-replay"></script>
+  </body>
+</html>

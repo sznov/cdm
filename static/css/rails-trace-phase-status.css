@@ -1,0 +1,101 @@
+.phase-status-panel {
+  cursor: pointer;
+  padding: 10px 12px;
+}
+
+.phase-status-panel:hover {
+  border-color: rgba(59, 130, 246, 0.55);
+}
+
+.phase-status-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.phase-status-row h2 {
+  margin: 0;
+  font-size: 0.82rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.phase-status-row .panel-note {
+  margin: 2px 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.phase-spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 3px solid rgba(59, 130, 246, 0.22);
+  border-top-color: var(--blue);
+  background: transparent;
+}
+
+.phase-status-panel.is-running:not(.is-terminal) .phase-spinner {
+  animation: phase-spin 0.8s linear infinite;
+}
+
+.phase-status-panel:not(.is-running) .phase-spinner,
+.phase-status-panel.is-terminal .phase-spinner {
+  animation: none;
+}
+
+.phase-status-panel.is-terminal .phase-spinner {
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid currentColor;
+  background: transparent;
+  color: var(--muted);
+}
+
+.phase-status-panel.is-terminal .phase-spinner::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.phase-status-panel.is-terminal-error .phase-spinner {
+  color: var(--red);
+}
+
+.phase-status-panel.is-terminal-cancelled .phase-spinner {
+  color: var(--amber);
+}
+
+.phase-stop-button {
+  min-width: 56px;
+  padding: 7px 10px;
+  border-radius: 8px;
+}
+
+@keyframes phase-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.model-output-jump {
+  display: none;
+  margin-top: 8px;
+}
+
+.model-output-jump.is-visible {
+  display: inline-flex;
+}
+
+.icon-button {
+  min-width: 36px;
+  padding: 7px 9px;
+  border-radius: 8px;
+  background: #344054;
+}
+

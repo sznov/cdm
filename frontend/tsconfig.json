@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": false,
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "noEmit": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ES2022"
+  },
+  "include": [
+    "src/**/*.ts",
+    "../static/js/api.js",
+    "../static/js/app_debug_bridge.js",
+    "../static/js/local_diagram_renderer.js",
+    "../static/js/provider_model_catalog.js",
+    "../static/js/run_observation_controller.js",
+    "../static/js/runtime_request_config.js",
+    "../static/js/run_state_store.js",
+    "../static/js/run_stream_request.js",
+    "../static/js/state.js",
+    "../static/js/streams.js",
+    "../static/js/structured_model_dot.js"
+  ]
+}

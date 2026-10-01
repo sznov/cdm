@@ -1,0 +1,205 @@
+.chat-message {
+  display: grid;
+  gap: 6px;
+  position: relative;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-soft);
+  overflow: visible;
+}
+
+.chat-message.user {
+  margin: 0;
+  background: var(--surface-soft);
+}
+
+.chat-message.assistant {
+  margin: 0;
+}
+
+.chat-message::before,
+.transcript-card::before {
+  content: none;
+}
+
+.chat-message.user::before {
+  background: color-mix(in srgb, var(--blue) 74%, var(--muted));
+}
+
+.chat-message.assistant::before {
+  background: color-mix(in srgb, var(--muted) 84%, var(--ink));
+}
+
+.chat-message strong {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.chat-message-header {
+  position: sticky;
+  top: 0;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0;
+  border-radius: 6px;
+  background: var(--surface-soft);
+  padding: 0 0 5px;
+  box-shadow: none;
+}
+
+.chat-message:not(.is-collapsed) .chat-message-header {
+  top: -30px;
+  margin: -10px -12px 6px;
+  padding: 8px 12px 7px;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 72%, transparent);
+  border-radius: 7px 7px 0 0;
+  box-shadow: 0 5px 0 0 var(--surface-soft);
+}
+
+.chat-message.is-collapsed .chat-message-header {
+  position: static;
+  margin: -10px -12px;
+  border-radius: 8px;
+  padding: 10px 12px;
+  box-shadow: none;
+}
+
+.chat-message-header.is-clickable {
+  cursor: pointer;
+}
+
+.chat-message-header.is-clickable:hover .chat-message-title,
+.chat-message-header.is-clickable:focus-visible .chat-message-title {
+  color: var(--ink);
+}
+
+.chat-message-header:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.chat-message-toggle {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  min-width: 28px;
+  height: 22px;
+  min-height: 22px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  outline: 0;
+  padding: 0;
+  box-shadow: none;
+  color: color-mix(in srgb, var(--muted) 82%, transparent);
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.chat-message-toggle:hover,
+.chat-message-toggle:focus-visible {
+  color: var(--muted);
+  background: transparent;
+}
+
+.chat-message-toggle svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.chat-message-body {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: var(--ink);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.chat-message-markdown {
+  display: grid;
+  gap: 7px;
+  white-space: normal;
+}
+
+.chat-message-markdown p,
+.chat-message-markdown h3,
+.chat-message-markdown h4,
+.chat-message-markdown h5 {
+  margin: 0;
+}
+
+.chat-message-markdown h3,
+.chat-message-markdown h4,
+.chat-message-markdown h5 {
+  color: var(--ink);
+  font-size: 0.84rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.chat-message-markdown code {
+  border-radius: 5px;
+  background: rgba(100, 116, 139, 0.14);
+  padding: 1px 4px;
+  font-family: var(--mono);
+}
+
+.chat-message-markdown .markdown-code {
+  margin: 0;
+  max-height: none;
+  overflow: visible;
+  border-radius: 7px;
+  background: #0b1020;
+  color: #e5e7eb;
+  padding: 9px;
+  font: 0.76rem/1.4 var(--mono);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.chat-message-markdown .markdown-bullet {
+  padding-left: 10px;
+}
+
+.chat-message-pre {
+  margin: 0;
+  max-height: none;
+  overflow: visible;
+  font: 0.82rem/1.45 var(--mono);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.chat-message.is-collapsed .chat-message-body {
+  display: none;
+}
+
+.chat-message.is-collapsed {
+  gap: 0;
+}
+
+.transcript-card {
+  display: grid;
+  gap: 7px;
+  position: relative;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-soft);
+  overflow: visible;
+}

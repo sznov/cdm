@@ -1,0 +1,27 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    image: cdmapp-runtime
+    init: true
+    working_dir: /workspace
+    env_file:
+      - .env
+    ports:
+      - "127.0.0.1:8010:8010"
+    volumes:
+      - ./__db__:/workspace/__db__
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8010/api/health', timeout=2).read()",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s

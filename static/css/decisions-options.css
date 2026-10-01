@@ -1,0 +1,125 @@
+.decision-options {
+  display: grid;
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.decision-option {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  align-items: start;
+  gap: 8px;
+  min-height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface-soft);
+  color: var(--control-color);
+  padding: 8px 9px;
+  font: 620 0.76rem/1.35 var(--sans);
+  letter-spacing: 0;
+  text-transform: none;
+  cursor: pointer;
+  transition: background 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.decision-option:hover {
+  border-color: var(--line-strong);
+  background: var(--control-bg-hover);
+}
+
+.decision-option.is-disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+
+.decision-option.is-disabled:hover {
+  border-color: var(--line);
+  background: var(--surface-soft);
+}
+
+.decision-option.is-selected {
+  border-color: var(--blue);
+  background: rgba(31, 95, 153, 0.1);
+  color: var(--ink);
+}
+
+.decision-option input[type="radio"] {
+  appearance: none;
+  display: grid;
+  place-content: center;
+  width: 15px;
+  height: 15px;
+  min-height: 15px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  padding: 0;
+  margin: 2px 0 0;
+  align-self: start;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.decision-option input[type="radio"]::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #fff;
+  transform: scale(0);
+  transition: transform 120ms ease;
+}
+
+.decision-option input[type="radio"]:checked {
+  border-color: var(--blue);
+  background: var(--blue);
+}
+
+.decision-option input[type="radio"]:checked::before {
+  transform: scale(1);
+}
+
+.decision-option span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.decision-option-warning {
+  grid-column: 2;
+  color: var(--red);
+  font: 650 0.68rem/1.35 var(--sans);
+}
+
+.decision-selected-warning {
+  grid-column: auto;
+  margin-top: 6px;
+}
+
+.decision-selected-choice {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 9px;
+  border: 1px solid rgba(40, 122, 62, 0.26);
+  border-radius: 6px;
+  background: rgba(40, 122, 62, 0.1);
+  color: var(--green);
+  padding: 4px 8px;
+  font: 700 0.72rem/1.35 var(--sans);
+  overflow-wrap: anywhere;
+}
+
+.decision-superseded-note {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 9px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface-soft);
+  color: var(--muted);
+  padding: 4px 8px;
+  font: 650 0.7rem/1.35 var(--sans);
+  overflow-wrap: anywhere;
+}
+

@@ -1,0 +1,166 @@
+body.theme-dark input,
+body.theme-dark select,
+body.theme-dark textarea {
+  color: var(--ink);
+  background: var(--surface-soft);
+  border-color: var(--line-strong);
+}
+
+body.theme-dark .decision-option {
+  background: #20242d;
+  color: #d9e2ef;
+  border-color: #343b49;
+}
+
+body.theme-dark .decision-option:hover {
+  background: #272d38;
+  border-color: #4b5565;
+}
+
+body.theme-dark .decision-option.is-disabled:hover {
+  background: #20242d;
+  border-color: #343b49;
+}
+
+body.theme-dark .decision-option.is-selected {
+  background: rgba(59, 130, 246, 0.16);
+  border-color: rgba(96, 165, 250, 0.72);
+  color: #f8fafc;
+}
+
+body.theme-dark .decision-option input[type="radio"] {
+  background: #111827;
+  border-color: #667085;
+}
+
+body.theme-dark .decision-option input[type="radio"]:checked {
+  background: var(--blue);
+  border-color: var(--blue);
+}
+
+body.theme-dark .decision-selected-choice {
+  background: rgba(20, 184, 166, 0.14);
+  border-color: rgba(20, 184, 166, 0.38);
+  color: #8ee8dc;
+}
+
+body.theme-dark .sequence-timeline,
+body.theme-dark .decision-patches,
+body.theme-dark .correction-chat {
+  background: var(--surface-soft);
+}
+
+body.theme-dark .session-title-row .destructive-icon-button:hover:not(:disabled) {
+  background: rgba(248, 113, 113, 0.12);
+  color: #fca5a5;
+}
+
+body.theme-dark .delete-session-summary {
+  background: rgba(15, 23, 42, 0.52);
+  border-color: rgba(148, 163, 184, 0.24);
+}
+
+body.theme-dark .delete-session-warning {
+  background: rgba(127, 29, 29, 0.18);
+  border-color: rgba(248, 113, 113, 0.28);
+  color: #fca5a5;
+}
+
+body.theme-dark .sequence-card,
+body.theme-dark .decision-patch,
+body.theme-dark .decision-patch.informational {
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+body.theme-dark .sequence-card strong,
+body.theme-dark .decision-patch-title {
+  color: var(--ink);
+}
+
+body.theme-dark .checkpoint-row.is-running .workflow-checkpoint-card,
+body.theme-dark .checkpoint-row.is-finalizing .workflow-checkpoint-card {
+  background: #172033;
+  border-color: rgba(96, 165, 250, 0.58);
+}
+
+body.theme-dark .checkpoint-row.is-error .workflow-checkpoint-card {
+  background: rgba(127, 29, 29, 0.24);
+  border-color: rgba(248, 113, 113, 0.5);
+}
+
+body.theme-dark .checkpoint-row.is-cancelled .workflow-checkpoint-card {
+  background: rgba(120, 53, 15, 0.24);
+  border-color: rgba(251, 191, 36, 0.5);
+}
+
+body.theme-dark .checkpoint-status-complete {
+  background: rgba(20, 184, 166, 0.18);
+  color: #8ee8dc;
+}
+
+body.theme-dark .checkpoint-status-running {
+  background: rgba(59, 130, 246, 0.2);
+  color: #bfdbfe;
+}
+
+body.theme-dark .checkpoint-status-finalizing {
+  background: rgba(139, 92, 246, 0.2);
+  color: #ddd6fe;
+}
+
+body.theme-dark .checkpoint-status-error {
+  background: rgba(220, 38, 38, 0.22);
+  color: #fecaca;
+}
+
+body.theme-dark .checkpoint-status-cancelled {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fde68a;
+}
+
+body.theme-dark .decision-pending-badge {
+  background: rgba(217, 45, 32, 0.18);
+  color: #fda29b;
+}
+
+body.theme-dark .session-decision-notice {
+  border-color: rgba(217, 45, 32, 0.5);
+  background: rgba(217, 45, 32, 0.14);
+  color: #fda29b;
+}
+
+body.theme-dark .session-decision-notice:hover,
+body.theme-dark .session-decision-notice:focus-visible {
+  border-color: rgba(253, 162, 155, 0.68);
+  background: rgba(217, 45, 32, 0.22);
+}
+
+body.theme-dark .sequence-lane,
+body.theme-dark .decision-patch-marker,
+body.theme-dark .trace-pill {
+  background: #303746;
+  color: var(--muted);
+}
+
+body.theme-dark .trace-show-more {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--muted);
+}
+
+body.theme-dark .trace-inspector h3 {
+  color: var(--ink);
+}
+
+body.theme-dark label,
+body.theme-dark .check {
+  color: var(--muted);
+}
+
+body.theme-dark .runtime-hint {
+  background: #17324d;
+  color: #c9e6ff;
+}
+

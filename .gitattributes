@@ -1,0 +1,2 @@
+third_party/renderer/** text eol=lf
+third_party/renderer/licenses/emscripten-MIT-NCSA.txt -whitespace

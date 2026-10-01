@@ -1,0 +1,553 @@
+* {
+  box-sizing: border-box;
+}
+
+/* HTML hidden semantics must win over component display declarations. */
+[hidden] {
+  display: none !important;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--bg);
+  font: 14px/1.45 var(--sans);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  line-height: 1.2;
+}
+
+h1 {
+  margin-top: 2px;
+  font-size: 1.25rem;
+  font-weight: 760;
+  letter-spacing: 0;
+}
+
+h2 {
+  color: #101828;
+  font-size: 0.78rem;
+  font-weight: 760;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.diagram-link,
+button {
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 9px 12px;
+  color: #fff;
+  background: var(--blue);
+  font-size: 0.82rem;
+  font-weight: 720;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.diagram-link:hover,
+button:hover:not(:disabled) {
+  background: var(--blue-deep);
+}
+
+.diagram-link.disabled,
+button:disabled {
+  opacity: 0.5;
+  background: #344054;
+  color: #aebacd;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+label {
+  display: grid;
+  gap: 5px;
+  color: #475467;
+  font-size: 0.68rem;
+  font-weight: 760;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 7px;
+  outline: none;
+  padding: 8px 9px;
+  color: var(--ink);
+  background: #fff;
+}
+
+input[type="checkbox"] {
+  accent-color: var(--blue);
+}
+
+input,
+select {
+  min-height: 34px;
+}
+
+textarea {
+  min-height: 220px;
+  resize: vertical;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+:root {
+  --session-rail-width: 220px;
+  --chat-rail-width: 300px;
+  --collapsed-session-rail-width: 0px;
+  --collapsed-chat-rail-width: 0px;
+}
+
+.codex-shell {
+  position: relative;
+  width: 100%;
+  max-width: 100vw;
+  height: 100dvh;
+  max-height: 100dvh;
+  display: grid;
+  grid-template-columns: var(--session-rail-width) minmax(320px, 1fr) var(--chat-rail-width);
+  grid-template-rows: auto minmax(0, 1fr);
+  color: var(--ink);
+  background: var(--bg);
+  overflow: hidden;
+}
+
+body.app-booting .codex-shell {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.session-rail {
+  grid-column: 1;
+  grid-row: 1 / -1;
+  position: relative;
+  height: 100%;
+  max-height: 100%;
+}
+
+.session-main {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.session-rail {
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  align-content: stretch;
+  gap: 12px;
+  padding: 14px;
+  background: var(--surface);
+  color: var(--ink);
+  border-right: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.modal-header,
+.frozen-spec-header {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.rail-brand {
+  position: static;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  gap: 12px;
+}
+
+.rail-brand-actions {
+  position: static;
+  display: inline-flex;
+  width: 100%;
+  gap: 7px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rail-brand-actions .icon-button,
+.rail-brand-actions .rail-tool-button,
+.new-session-button {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  place-items: center;
+  padding: 0;
+  border-radius: 8px;
+  border: 1px solid var(--control-border);
+  background: var(--control-bg);
+  color: var(--control-color);
+  text-decoration: none;
+  line-height: 1;
+  box-sizing: border-box;
+}
+
+.rail-brand-actions #themeToggle.icon-button,
+.rail-brand-actions .rail-tool-button,
+.new-session-button {
+  display: inline-grid;
+}
+
+.rail-brand-actions #themeToggle.icon-button {
+  width: 68px;
+  min-width: 68px;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 999px;
+}
+
+.theme-toggle-icon {
+  width: 29px;
+  height: 29px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 999px;
+  color: var(--control-muted);
+}
+
+.theme-toggle-icon svg {
+  display: block;
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+body:not(.theme-dark) #themeToggle .theme-toggle-sun {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.12);
+}
+
+body.theme-dark #themeToggle .theme-toggle-moon {
+  background: #0f1115;
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.12);
+}
+
+.rail-brand-actions .icon-button > svg,
+.new-session-button > svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.compact-sessions-button {
+  display: none;
+}
+
+.rail-brand-actions .icon-button:hover:not(:disabled),
+.rail-brand-actions .rail-tool-button:hover,
+.new-session-button:hover:not(:disabled) {
+  background: var(--control-bg-hover);
+}
+
+.rail-tool-button svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+  margin: 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.rail-tool-button {
+  color: var(--control-color);
+  text-decoration: none;
+}
+
+.sessions-heading {
+  display: none;
+}
+
+.new-session-button {
+  font-size: 0;
+}
+
+#newSessionButton.new-session-button {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 8px;
+  background: var(--control-bg);
+}
+
+.new-session-button::before {
+  content: none;
+}
+
+.rail-section-heading {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.unified-chat-panel {
+  position: relative;
+  grid-column: 3;
+  grid-row: 1 / -1;
+  height: 100%;
+  max-height: 100%;
+  border-block: 0;
+  border-right: 0;
+  border-left: 1px solid var(--line);
+  border-radius: 0;
+  padding: 12px;
+}
+
+body.theme-dark.has-session .unified-chat-panel {
+  background: var(--surface-strong);
+}
+
+.chat-rail-toggle,
+#toggleSessionRailButton {
+  position: absolute;
+  top: 50%;
+  z-index: 26;
+  display: none;
+  place-items: center;
+  width: 20px;
+  min-width: 20px;
+  height: 76px;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  color: color-mix(in srgb, var(--muted) 78%, transparent);
+  transform: translateY(-50%);
+}
+
+#toggleSessionRailButton {
+  right: 0;
+  border-radius: 10px 0 0 10px;
+}
+
+.chat-rail-toggle {
+  right: 0;
+  border-radius: 0 10px 10px 0;
+  pointer-events: auto;
+}
+
+.chat-rail-toggle svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.chat-rail-toggle:hover,
+.chat-rail-toggle:focus-visible,
+#toggleSessionRailButton:hover,
+#toggleSessionRailButton:focus-visible {
+  background: color-mix(in srgb, var(--control-bg-hover) 70%, transparent);
+  color: var(--ink);
+}
+
+.app-column-resizer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 18;
+  width: 24px;
+  background: transparent;
+  cursor: col-resize;
+  touch-action: none;
+}
+
+.app-column-resizer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 11px;
+  width: 2px;
+  background: transparent;
+  transition: background 0.16s ease;
+}
+
+.app-column-resizer:hover::before,
+body.is-resizing-app-rail .app-column-resizer::before {
+  background: color-mix(in srgb, var(--blue) 52%, transparent);
+}
+
+.session-column-resizer {
+  left: calc(var(--session-rail-width) - 12px);
+}
+
+.chat-column-resizer {
+  right: calc(var(--chat-rail-width) - 12px);
+}
+
+/* Preserve the resize cursor across descendants during an active drag. */
+body.is-resizing-app-rail,
+body.is-resizing-app-rail * {
+  cursor: col-resize !important;
+  user-select: none;
+}
+
+body.session-rail-collapsed {
+  --session-rail-width: var(--collapsed-session-rail-width);
+}
+
+body.chat-rail-collapsed {
+  --chat-rail-width: var(--collapsed-chat-rail-width);
+}
+
+body.session-rail-collapsed .session-column-resizer,
+body.chat-rail-collapsed .chat-column-resizer {
+  display: none;
+}
+
+body.session-rail-collapsed .session-rail {
+  overflow: visible;
+  padding: 0;
+  border-right: 0;
+  background: transparent;
+  pointer-events: none;
+}
+
+body.session-rail-collapsed .rail-brand {
+  min-height: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+body.session-rail-collapsed .rail-brand-actions {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+body.session-rail-collapsed #themeToggle,
+body.session-rail-collapsed .new-session-button,
+body.session-rail-collapsed .session-list,
+body.session-rail-collapsed .sessions-heading {
+  display: none;
+}
+
+body.session-rail-collapsed #toggleSessionRailButton {
+  position: fixed;
+  top: 50%;
+  right: auto;
+  left: 0;
+  z-index: 40;
+  display: inline-grid;
+  width: 28px;
+  min-width: 28px;
+  height: 108px;
+  border-radius: 0 12px 12px 0;
+  color: color-mix(in srgb, var(--muted) 82%, transparent);
+  pointer-events: auto;
+}
+
+body.session-rail-collapsed #toggleSessionRailButton svg {
+  transform: rotate(180deg);
+}
+
+body.chat-rail-collapsed .unified-chat-panel {
+  overflow: visible;
+  padding: 0;
+  border-left: 0;
+  background: transparent;
+  pointer-events: none;
+}
+
+body.chat-rail-collapsed .unified-chat-panel > :not(.chat-rail-toggle) {
+  display: none;
+}
+
+body.chat-rail-collapsed #toggleChatRailButton {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  left: auto;
+  z-index: 40;
+  display: inline-grid;
+  width: 28px;
+  min-width: 28px;
+  height: 108px;
+  border-radius: 12px 0 0 12px;
+  color: color-mix(in srgb, var(--muted) 82%, transparent);
+  pointer-events: auto;
+}
+
+body.chat-rail-collapsed #toggleChatRailButton svg {
+  transform: none;
+}
+
+@media (min-width: 901px) {
+  body:not(.has-session) .codex-shell::after {
+    content: "";
+    display: block;
+    grid-column: 3;
+    grid-row: 1 / -1;
+    height: 100%;
+    min-width: 0;
+    border-left: 1px solid var(--line);
+    background: var(--surface);
+  }
+
+  body.theme-dark:not(.has-session) .codex-shell::after {
+    background: var(--surface-strong);
+  }
+}
+
+body.theme-dark .session-rail {
+  border-right-color: var(--line);
+  background: var(--surface-strong);
+  color: #f8fafc;
+}
+
+body.theme-dark .rail-section-heading {
+  color: #9ca3af;
+}
+

@@ -1,0 +1,58 @@
+.compact-heading button:hover:not(:disabled),
+.toolbar button:hover:not(:disabled),
+#clearTrace:hover:not(:disabled),
+#jumpToCurrent:hover:not(:disabled) {
+  background: var(--control-bg-hover);
+}
+
+.run-list {
+  display: grid;
+  gap: 7px;
+  max-height: min(34vh, 360px);
+  overflow: auto;
+}
+
+.run-row {
+  display: grid;
+  width: 100%;
+  gap: 3px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+  color: var(--ink);
+  padding: 9px;
+  text-align: left;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.run-row:hover:not(:disabled) {
+  border-color: #9db8d1;
+  background: #f8fbff;
+}
+
+.run-row.selected {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 2px var(--focus);
+}
+
+.run-row strong {
+  color: var(--blue-deep);
+  font: 0.78rem/1.35 var(--mono);
+}
+
+.run-row span {
+  color: var(--muted);
+  font: 0.7rem/1.35 var(--mono);
+  overflow-wrap: anywhere;
+}
+
+.run-row-stop {
+  justify-self: start;
+  margin-top: 4px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: #d92d20;
+  font-size: 0.7rem;
+}
+

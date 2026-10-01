@@ -1,0 +1,64 @@
+# Local configuration
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+
+# Python caches and test output
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Build output
+/build/
+/dist/
+/release/
+/out/
+/frontend/dist/
+/static/vendor/viz.js
+
+# Runtime app data
+/__db__/
+
+# Keep local datasets private.
+/datasets/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+tmp/
+temp/
+
+# Browser/test scratch data
+.codex-screenshots/
+.tmp-chrome-shot*/
+node_modules/
+playwright-report/
+test-results/
+artifacts/*chrome*profile*/
+artifacts/*edge*profile*/
+
+# Root-level browser/debug screenshots
+/browser-*.png
+/browser-*.jpg
+/browser-*.jpeg
+/browser-*.webp
+/tmp-browser-*.png
+/tmp-browser-*.jpg
+/tmp-browser-*.jpeg
+/tmp-browser-*.webp
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo

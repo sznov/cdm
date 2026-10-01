@@ -1,0 +1,102 @@
+.progress-card {
+  overflow: hidden;
+}
+
+.progress-card .panel-heading {
+  align-items: flex-start;
+}
+
+.progress-card .toolbar {
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
+  gap: 6px;
+}
+
+.progress-card .toolbar button {
+  min-width: max-content;
+  white-space: nowrap;
+}
+
+#status,
+#jobInfo {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  line-height: 1.28;
+}
+
+.right-rail-tabs {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.right-rail-tab {
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+
+.right-rail-tab.is-active {
+  background: var(--active-blue);
+  color: #fff;
+}
+
+.right-rail-tab .rail-tab-count {
+  min-width: 17px;
+  height: 17px;
+  justify-content: center;
+  border-radius: 999px;
+  background: #d92d20;
+  color: #fff;
+  padding: 0 5px;
+  font: 800 0.66rem/17px var(--sans);
+}
+
+.right-rail-tab .rail-tab-count::before {
+  display: none;
+}
+
+.rail-panel {
+  min-height: 0;
+  display: none;
+  overflow: hidden;
+}
+
+.rail-panel.is-active {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.rail-panel[data-rail-panel="progress"].is-active {
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 10px;
+}
+
+.rail-panel[data-rail-panel="decisions"].is-active {
+  align-content: start;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.rail-panel-actions {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.rail-panel-actions .toolbar {
+  flex: 0 0 auto;
+}
+
